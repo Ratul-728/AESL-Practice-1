@@ -1,11 +1,18 @@
 package Cart.Cart.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity(name = "cart")
 @Table
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Cart {
     @Id
     @GeneratedValue

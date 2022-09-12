@@ -1,6 +1,8 @@
 package Cart.Cart.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,6 +11,8 @@ import java.util.List;
 @Entity
 @Table(name = "shop")
 @Data
+@Getter
+@Setter
 public class Shop {
     @Id
     @GeneratedValue

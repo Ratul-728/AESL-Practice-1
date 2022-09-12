@@ -1,13 +1,22 @@
 package Cart.Cart.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Getter
+@Setter
 public class Customer {
     @Id
     @GeneratedValue
@@ -24,9 +33,9 @@ public class Customer {
 
     private String customerAddress;
 
-    private String customerDob;
+    private LocalDate customerDob;
 
-    private String customerCreateDate;
+    private LocalDateTime customerCreateDate;
 
     private String customerStatus;
 
