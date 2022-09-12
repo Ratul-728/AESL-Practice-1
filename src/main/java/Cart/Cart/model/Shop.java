@@ -7,23 +7,15 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "shop")
 @Data
 public class Shop {
     @Id
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
+    @GeneratedValue
 
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
+    private Long id;
 
-    private Long shopId;
-
+    @Column(name = "shopName", nullable = false)
     private String shopName;
 
     private String shopDetails;
@@ -38,12 +30,7 @@ public class Shop {
 
     private char shopStatus;
 
-//    @OneToMany(mappedBy = "shopId", cascade = CascadeType.ALL)
-//    private List<Product> productId;
-//
-//    @OneToMany(mappedBy = "shopName", cascade = CascadeType.ALL)
-//    private List<Product> productName;
-
-    @OneToMany(mappedBy = "shopId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     private List<Product> products;
+
 }

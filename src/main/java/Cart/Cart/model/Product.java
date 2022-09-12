@@ -4,24 +4,16 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table
+@Table(name = "product")
 @Data
 public class Product {
     @Id
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
+    @GeneratedValue
 
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
-
-    private Long productId;
+    private Long id;
 
     private String productName;
 
@@ -33,20 +25,19 @@ public class Product {
 
     private double rating;
 
-//    @ManyToOne
-//    private Shop shopId;
-//
-//    @ManyToOne
-//    private Shop shopName;
+    @ManyToOne
+    private Shop shop;
+
+    @ManyToMany
+    @JoinTable(
+            name = "cart_info",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "cart_id")
+    )
+    private List<Cart> cart;
 
     private String productCreateDate;
 
     private char productStatus;
 
-    @ManyToOne
-//    @JoinColumns({
-            @JoinColumn(name = "shopId")
-            //@JoinColumn(name = "shopName")
-//    })
-    private Shop shop;
 }

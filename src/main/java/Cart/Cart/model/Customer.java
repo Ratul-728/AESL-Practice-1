@@ -3,25 +3,16 @@ package Cart.Cart.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
 @Data
 public class Customer {
     @Id
-    //need to learn
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
+    @GeneratedValue
 
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
-
-    private Long cutomerId;
+    private Long id;
 
     private String customerName;
 
@@ -38,5 +29,8 @@ public class Customer {
     private String customerCreateDate;
 
     private String customerStatus;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Cart> cart;
 
 }
