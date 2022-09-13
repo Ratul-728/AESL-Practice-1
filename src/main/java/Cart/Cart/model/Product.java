@@ -3,7 +3,6 @@ package Cart.Cart.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -11,13 +10,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@Getter
-@Setter
 public class Product {
     @Id
-    @GeneratedValue
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String productName;
@@ -33,13 +28,26 @@ public class Product {
     @ManyToOne
     private Shop shop;
 
-    @ManyToMany
+    /*@ManyToOne
+    private CartProduct productCa;*/
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<CartProduct> cartProductList;
+
+    /*@ManyToMany
     @JoinTable(
             name = "cart_info",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "cart_id")
     )
-    private List<Cart> cart;
+    private List<Cart> cart;*/
+
+    /*@OneToMany(
+            mappedBy = "product",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<CartProduct> cartProducts = new ArrayList<>();*/
 
     private String productCreateDate;
 

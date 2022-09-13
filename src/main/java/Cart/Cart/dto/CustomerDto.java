@@ -7,9 +7,7 @@ import java.time.LocalTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Getter
-@Setter
+@Data
 public class CustomerDto {
     private String customerNameDto;
 

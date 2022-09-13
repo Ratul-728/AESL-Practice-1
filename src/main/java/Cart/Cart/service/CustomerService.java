@@ -101,8 +101,8 @@ public class CustomerService {
         }
     }
 
-    public ResponseEntity<?> updateCustomer(Long customerId, String customerName, String customerDob, String customerEmail, String customerContact, String customerAddress) {
-        int check = customerRepository.updateCustomer(customerId,  customerName, customerDob,  customerEmail, customerContact,customerAddress);
+    public ResponseEntity<?> updateCustomer(Long customerId, String customerName/*, String customerDob, String customerEmail, String customerContact, String customerAddress*/) {
+        int check = customerRepository.updateCustomer(customerId,  customerName/*, customerDob,  customerEmail, customerContact,customerAddress*/);
         if(check == 0){
             response.setMessage("Customer updated Not Successfully");
             response.setStatus("BAD_REQUEST");

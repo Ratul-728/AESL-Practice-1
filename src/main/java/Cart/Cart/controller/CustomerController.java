@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/customer")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -43,12 +43,12 @@ public class CustomerController {
 
     @PutMapping(path = "/update-customer/{customerId}")
     public ResponseEntity<?> updateCustomer(@PathVariable("customerId") Long customerId,
-                                            @RequestParam(required = false) String customerName,
-                                            @RequestParam(required = false) String customerDob,
+                                            @RequestParam(required = false) String customerName
+                                            /*@RequestParam(required = false) String customerDob,
                                             @RequestParam(required = false) String customerEmail,
                                             @RequestParam(required = false) String customerContact,
-                                            @RequestParam(required = false) String customerAddress){
-        return customerService.updateCustomer(customerId, customerName, customerDob, customerEmail,customerContact, customerAddress);
+                                            @RequestParam(required = false) String customerAddress*/){
+        return customerService.updateCustomer(customerId, customerName/*, customerDob, customerEmail,customerContact, customerAddress*/);
     }
 
 }
