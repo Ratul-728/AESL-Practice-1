@@ -17,6 +17,16 @@ public class CartProduct {
 //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /*@SequenceGenerator(
+            name = "cartProduct_sequence",
+            sequenceName = "cartProduct_sequence",
+            allocationSize = 1
+    )
+
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "cartProduct_sequence"
+    )*/
     private Long id;
 
 //    @OneToMany(mappedBy = "productCa", cascade = CascadeType.ALL)

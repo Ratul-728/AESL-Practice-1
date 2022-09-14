@@ -1,7 +1,10 @@
 package Cart.Cart.controller;
 
+import Cart.Cart.dto.CartDto;
 import Cart.Cart.dto.ProductDto;
+import Cart.Cart.model.Cart;
 import Cart.Cart.service.ProductService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +38,9 @@ public class ProductController {
         return productService.updateProduct(productDto, productId);
     }
 
-
+    @PostMapping("/add-product-to-cart/{productId}")
+    public ResponseEntity<?> addProdcutToCart(@PathVariable Long productId,
+                                              @RequestBody CartDto cartDto){
+        return productService.addProductToCart(productId, cartDto);
+    }
 }

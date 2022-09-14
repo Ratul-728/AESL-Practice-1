@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,16 @@ import java.util.List;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /*@SequenceGenerator(
+            name = "cart_sequence",
+            sequenceName = "cart_sequence",
+            allocationSize = 1
+    )
+
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "cart_sequence"
+    )*/
     private Long id;
 
     @ManyToOne
@@ -39,7 +50,7 @@ public class Cart {
     private List<CartProduct> cartProductList;
 
     private String deliveryAddress;
-    private Date createDate;
+    private LocalDateTime createDate;
     private char status;
 
 
