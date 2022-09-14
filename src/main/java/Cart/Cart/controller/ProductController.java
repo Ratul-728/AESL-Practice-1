@@ -3,10 +3,8 @@ package Cart.Cart.controller;
 import Cart.Cart.dto.ProductDto;
 import Cart.Cart.service.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/product")
@@ -22,4 +20,20 @@ public class ProductController {
     public ResponseEntity<?> addProduct(@RequestBody ProductDto productDto){
         return productService.addProduct(productDto);
     }
+    @GetMapping("/get-product/{productId}")
+    public ResponseEntity<?> getProduct(@PathVariable Long productId){
+        return productService.getProduct(productId);
+    }
+
+    @DeleteMapping("/delete-product/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long productId){
+        return productService.deleteProduct(productId);
+    }
+    @PutMapping("/update-product/{productId}")
+    public ResponseEntity<?> updateProduct(@PathVariable Long productId,
+                                           @RequestBody ProductDto productDto){
+        return productService.updateProduct(productDto, productId);
+    }
+
+
 }

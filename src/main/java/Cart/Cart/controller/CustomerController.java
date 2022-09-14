@@ -43,12 +43,12 @@ public class CustomerController {
 
     @PutMapping(path = "/update-customer/{customerId}")
     public ResponseEntity<?> updateCustomer(@PathVariable("customerId") Long customerId,
-                                            @RequestParam(required = false) String customerName
+                                            @RequestBody CustomerDto customerDto
                                             /*@RequestParam(required = false) String customerDob,
                                             @RequestParam(required = false) String customerEmail,
                                             @RequestParam(required = false) String customerContact,
                                             @RequestParam(required = false) String customerAddress*/){
-        return customerService.updateCustomer(customerId, customerName/*, customerDob, customerEmail,customerContact, customerAddress*/);
+        return customerService.updateCustomer(customerId, customerDto/*, customerDob, customerEmail,customerContact, customerAddress*/);
     }
 
 }

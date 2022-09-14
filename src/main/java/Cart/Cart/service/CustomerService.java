@@ -101,8 +101,8 @@ public class CustomerService {
         }
     }
 
-    public ResponseEntity<?> updateCustomer(Long customerId, String customerName/*, String customerDob, String customerEmail, String customerContact, String customerAddress*/) {
-        int check = customerRepository.updateCustomer(customerId,  customerName/*, customerDob,  customerEmail, customerContact,customerAddress*/);
+    public ResponseEntity<?> updateCustomer(Long customerId, CustomerDto customerDto/*, String customerDob, String customerEmail, String customerContact, String customerAddress*/) {
+        /*int check = customerRepository.updateCustomer(customerId,  customerName*//*, customerDob,  customerEmail, customerContact,customerAddress*//*);
         if(check == 0){
             response.setMessage("Customer updated Not Successfully");
             response.setStatus("BAD_REQUEST");
@@ -117,7 +117,40 @@ public class CustomerService {
             response.setErrorData(null);
 
             return ResponseEntity.accepted().body(response);
+        }*/
+
+        Customer customer = customerRepository.findById(customerId).get();
+
+        if(customerDto.getCustomerNameDto() != null){
+            customer.setCustomerName(customerDto.getCustomerNameDto());
         }
+        if (customerDto.getCustomerAddressDto() != null) {
+            customer.setCustomerAddress(customerDto.getCustomerAddressDto());
+        }
+        if (customerDto.getCustomerDobDto() != null) {
+            customer.setCustomerDob(customerDto.getCustomerDobDto());
+        }
+        if (customerDto.getCustomerContactDto() != null) {
+            customer.setCustomerContact(customerDto.getCustomerContactDto());
+        }
+        if (customerDto.getCustomerEmailDto() != null) {
+            customer.setCustomerEmail(customerDto.getCustomerEmailDto());
+        }
+
+        try{
+            customerRepository.save(customer);
+        }catch (Exception e){
+            response.setMessage(e.getMessage());
+            response.setStatus("BAD_REQUEST");
+            response.setSuccessData(null);
+            response.setErrorData(null);
+            return ResponseEntity.badRequest().body(response);
+        }
+        response.setMessage("Customer updated Successfully");
+        response.setStatus("GOOD_REQUEST");
+        response.setSuccessData(customer);
+        response.setErrorData(null);
+        return ResponseEntity.accepted().body(response);
     }
 
     /*public ResponseEntity<?> loginCustomer(String email, String password) {
