@@ -1,5 +1,6 @@
 package Cart.Cart.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,6 +34,7 @@ public class Product {
     private CartProduct productCa;*/
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<CartProduct> cartProductList;
 
     /*@ManyToMany

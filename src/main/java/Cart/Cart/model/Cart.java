@@ -1,5 +1,8 @@
 package Cart.Cart.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,19 +21,10 @@ import java.util.List;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    /*@SequenceGenerator(
-            name = "cart_sequence",
-            sequenceName = "cart_sequence",
-            allocationSize = 1
-    )
-
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "cart_sequence"
-    )*/
     private Long id;
 
     @ManyToOne
+    @JsonBackReference
     private Customer customer;
 
     /*@ManyToOne
@@ -47,6 +41,7 @@ public class Cart {
     private List<CartProduct> cartProducts = new ArrayList<>();*/
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<CartProduct> cartProductList;
 
     private String deliveryAddress;

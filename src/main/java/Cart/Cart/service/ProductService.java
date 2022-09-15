@@ -50,9 +50,10 @@ public class ProductService {
         product.setRating(productDto.getRatingDto());
         product.setProductStatus('1');
 
-        Optional<Shop> shop = shopRepository.findById((long) productDto.getShopIdDto());
+        Shop shop = new Shop();
+        shop = shopRepository.findById((long) productDto.getShopIdDto()).get();
 
-        if(shop.isEmpty()){
+        if(shop.getId() < 1){
             response.setMessage("Shop not found!");
             response.setStatus("BAD_REQUEST");
             response.setSuccessData(null);
@@ -60,6 +61,7 @@ public class ProductService {
             return ResponseEntity.badRequest().body(response);
 
         }else{
+            product.setShop(shop);
             //product.setShop(shop.get());
             try{
                 productRepository.save(product);
