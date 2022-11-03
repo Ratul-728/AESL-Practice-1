@@ -59,7 +59,7 @@ public class CustomerService {
         customer.setCustomerContact(customerDto.getCustomerContactDto());
         customer.setCustomerDob(customerDto.getCustomerDobDto());
         customer.setCustomerEmail(customerDto.getCustomerEmailDto());
-        customer.setCustomerCreateDate(LocalDateTime.now());
+        //customer.setCustomerCreateDate(LocalDateTime.now());
         customer.setCustomerStatus("1");
 
         try{

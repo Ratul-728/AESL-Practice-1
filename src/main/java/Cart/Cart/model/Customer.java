@@ -34,13 +34,13 @@ public class Customer {
 
     private LocalDate customerDob;
 
-    private LocalDateTime customerCreateDate;
+    //private LocalDateTime customerCreateDate;
 
     private String customerStatus;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    /*@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Cart> cart;
+    private List<Cart> cart;*/
 
 
 }
